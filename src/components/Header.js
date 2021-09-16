@@ -5,7 +5,7 @@ import React from "react";
 
 // Functional Component
 const Header = () => {
-  return <div>Header</div>;
+  return <h2>Expense Tracker</h2>;
 };
 
 // Default Export
