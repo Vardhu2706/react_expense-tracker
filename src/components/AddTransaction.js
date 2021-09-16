@@ -31,7 +31,6 @@ const AddTransaction = () => {
   return (
     <>
       <h3>Add new transaction</h3>
-
       {/* Form */}
       <form onSubmit={onSubmit}>
         <div className="form-control">

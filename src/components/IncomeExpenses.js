@@ -1,11 +1,55 @@
 // Income Expenses Component
 
-// Imports
-import React from "react";
+// Importing Helpers
+import React, { useContext } from "react";
+
+// Importing Global Context
+import { GlobalContext } from "../context/GlobalState";
+
+// Money Formatting Function
+function moneyFormatter(num) {
+  let p = num.toFixed(2).split(".");
+
+  return (
+    "₹" +
+    p[0]
+      .split("")
+      .reverse()
+      .reduce((acc, num, i) => {
+        return num === "-" ? acc : num + (i && !(1 % 3) ? "," : "") + acc;
+      }, "") +
+    "." +
+    p[1]
+  );
+}
 
 // Functional Component
 const IncomeExpenses = () => {
-  return <div>Income Expenses</div>;
+  // Global Context Variable
+  const { transactions } = useContext(GlobalContext);
+
+  const amounts = transactions.map((transaction) => transaction.amount);
+  const income = amounts
+    .filter((item) => item > 0)
+    .reduce((acc, item) => (acc += item), 0);
+
+  const expense =
+    amounts.filter((item) => item < 0).reduce((acc, item) => (acc += item), 0) *
+    -1;
+
+  return (
+    <div className="inc-exp-container">
+      <div>
+        <h4>Income</h4>
+        <p className="money plus">{moneyFormatter(income)}</p>
+      </div>
+
+      <div>
+        <h4>Expenses</h4>
+        <p className="money minus">{moneyFormatter(expense)}</p>
+      </div>
+    </div>
+  );
 };
 
 // Default Export
