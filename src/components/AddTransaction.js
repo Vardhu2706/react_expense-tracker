@@ -25,16 +25,21 @@ const AddTransaction = () => {
       amount: +amount,
     };
 
+    // Add Transaction
     addTransaction(newTransaction);
+
+    // Reset State Variables
+    setText("");
+    setAmount(0);
   };
 
   return (
     <>
-      <h3>Add new transaction</h3>
+      <h3>Add New Transaction</h3>
       {/* Form */}
       <form onSubmit={onSubmit}>
         <div className="form-control">
-          <label htmlFor="text">Text</label>
+          <label htmlFor="text">Transaction Name:</label>
           <input
             type="text"
             value={text}
@@ -44,7 +49,7 @@ const AddTransaction = () => {
         </div>
         <div className="form-control">
           <label htmlFor="amount">
-            Amount <br /> (Negative - expense, Positive - income)
+            Transaction Amount: <br /> (Negative - expense, Positive - income)
           </label>
 
           <input

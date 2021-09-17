@@ -9,14 +9,13 @@ import { GlobalContext } from "../context/GlobalState";
 // Money Formatting Function
 function moneyFormatter(num) {
   let p = num.toFixed(2).split(".");
-
   return (
-    "₹" +
+    "$ " +
     p[0]
       .split("")
       .reverse()
-      .reduce((acc, num, i) => {
-        return num === "-" ? acc : num + (i && !(1 % 3) ? "," : "") + acc;
+      .reduce(function (acc, num, i) {
+        return num === "-" ? acc : num + (i && !(i % 3) ? "," : "") + acc;
       }, "") +
     "." +
     p[1]
